@@ -1,10 +1,12 @@
 import "dotenv/config";
 import axios from "axios";
 
+//creating json CLient to hold the base URL
 const jsonClient = axios.create({
   baseURL: "http://www.omdbapi.com/",
 });
 
+//Axios request interceptors logging method and url
 jsonClient.interceptors.request.use((request) => {
   console.log(`Requesting: ${request.method}  ${request.url}`);
   return request;
@@ -12,11 +14,11 @@ jsonClient.interceptors.request.use((request) => {
 
 jsonClient.interceptors.response.use(
   (response) => {
-    console.log("View you fun fact!");
+    console.log("View the movies!");
     return response;
   },
   (error) => {
-    console.error("Could not fetch fun fact.");
+    console.error("Could not fetch movies.");
     return Promise.reject(error);
   },
 );
@@ -104,4 +106,4 @@ const getMovieDetails = async (req, res) => {
   }
 };
 
-export {searchMovies, getMovieDetails}
+export {searchMovies, getMovieDetails};

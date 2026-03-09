@@ -51,7 +51,7 @@ const searchMovies = async (req, res) => {
 
     console.log(transformedData);
 
-    res.send(transformedData);
+    res.json(transformedData);
   } catch (error) {
     if (error.response) {
       // The request was made and the server responded with a status code
@@ -100,7 +100,7 @@ const getMovieDetails = async (req, res) => {
 
     console.log(transformedData);
 
-    res.send(transformedData);
+    res.json(transformedData);
   } catch (error) {
     if (error.response) {
       // The request was made and the server responded with a status code

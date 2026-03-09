@@ -35,7 +35,7 @@ const searchMovies = async (req, res) => {
     }
     // make a request to a external api
     const response = await jsonClient.get(
-      `?s=${req.query.title}&apikey=${process.env.OMDB_API_KEY}`,
+      `?s=${title}&apikey=${process.env.OMDB_API_KEY}`,
     );
 
     console.log(response.data);
@@ -70,9 +70,20 @@ const searchMovies = async (req, res) => {
 
 const getMovieDetails = async (req, res) => {
   try {
+
+     const { id } = req.params;
+
+    // validation
+    if (!id) {
+      return res.status(400).json({
+        error: "Valid IMDb ID is required",
+      });
+    }
+
+    
     // make a request to a external api
     const response = await jsonClient.get(
-      `?i=${req.params.id}&apikey=${process.env.OMDB_API_KEY}`,
+      `?i=${id}&apikey=${process.env.OMDB_API_KEY}`,
     );
 
     console.log(response.data);
